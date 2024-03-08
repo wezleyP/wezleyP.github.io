@@ -1,0 +1,84 @@
+#main {
+  width: 90%;
+  height: 200vh;
+  background-color: lightblue;
+  margin: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+#div1 {
+  width: 75%;
+  height: 100px;
+  background-color: red;
+  margin-bottom: 10px;
+
+}
+#div2 {
+  width: 75%;
+  height: 100px;
+  background-color: green;
+  margin-bottom: 10px;
+  position: relative;
+  left: -10px;
+}
+#div3 {
+  width: 75%;
+  height: 100px;
+  background-color: blue;
+  margin-bottom: 10px;
+  position: absolute;
+  bottom: 20px;
+}
+#div4 {
+  width: 75%;
+  height: 100px;
+  background-color: yellow;
+  margin-bottom: 10px;
+  position: sticky;
+  top: 0;
+}
+#div5 {
+  width: 75%;
+  height: 100px;
+  background-color: pink;
+  margin-bottom: 10px;
+  position: fixed;
+  bottom: 0;
+}
+#div6 {
+  width: 75%;
+  height: 100px;
+  background-color: purple;
+  margin-bottom: 10px;
+
+}
+
+.sp1 {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  margin: 10px;
+
+}
+.div1 {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  margin: 10px;
+}
+.header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: red;
+  width: 25%;
+  display: flex;
+  justify-content: space-between;
+  margin-right: 25% ;
+}
+.foot {
+  background-color: gray;
+  height: 100px;
+  display: flex;
+  flex-direction: row;
+}
