@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+    <script>
+      //HTML and CSS not programming language
+      //JavaScript is a programming language
+      // BScript
+      // LiveScript => JavaScript
+      // java and JavaScript are not the same
+      // not type safe, not strict
+      // s1
+      'use strict'; // strict mode
+      { // block scope
+          const x = 10; // local variable
+          let age2; // local undefined
+          var age3; // global undefined
+          age2 = 20; // local variable is a number now
+          age2 = 18.4; // local variable is a float now
+
+          age2 = "Tom";
+          age2 = 'Tom'
+          age2 = `Tom`;
+
+          let name = "Tom";
+          let age = 20;
+          let str = `My name is ${name}, I am ${age} years old.`;
+          console.log(str);
+          //alert(str);
+          // object, dictionary
+          let stu = {
+              name: "Tom",
+              age: 20, 
+              grade: 89.5
+          }
+          console.log(stu.grade);
+
+          let arr1;
+          arr1 = ["Tom", "Jack", "Mary"];
+          console.log(arr1.length);
+          console.log(arr1[1]);
+
+          //func
+          function func1 (p1, p2) {
+            return p1 + p2;
+          }
+          // way 2 arrow function
+          
+
+          let func = (p1, p2) => {
+            
+            return p1 + p2;
+          }
+          console.log(func(1,2));
+
+          console.log(func1(1,2));
+      }
+      
+    </script>
+    <script>
+      {
+        'use strict';
+    
+      }
+      // s2
+    </script>
+
+
+  <div id="div1"></div>
+  <img src="head1.png" alt="" id="img1">
+  <img src="b.svg" alt="" id="img2">
+
+  <script>
+    "use strict"; 
+    let div1 = document.getElementById('div1').style.background = 'red'; 
+    let img1 = document.getElementById('img1').style.height = '50px';
+    let img2 = document.getElementById('img2').style.width = '100px';
+    
+  </script>
+</body>
+</html>
