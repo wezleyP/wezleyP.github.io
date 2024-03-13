@@ -33,20 +33,94 @@
   <link rel="icon" href="static/head1.png">
 </head>
 <body>
+  <script>
+    "use strict"; 
+ 
+    let v1;
+    var v2;
+
+    v1 = 20;
+    v1 = 'Tom';
+
+    {
+      let v3 = 30;
+      v3 = "Jack";
+      console.log(v3);
+    }
+  </script>
+  <script>
+    "use strict"; 
+ 
+    console.log(v1);
+    // console.log(v3);
+
+    v2 = "Tom";
+    v2 = 'Tom';
+    v2 = `Tom`;
+    let age1 = 20;
+    v2 = `Name is ${v2} and age is ${age1}`;
+    console.log(v2);
+
+    //object
+    v2 = {
+      name: "Tom",
+      age: 20,
+      grade: 96.6
+    };
+
+    //array
+    v2 = [19, 20, 21];
+    console.log(v2.length);
+    console.log(v2[0]);
+
+    //function
+    function getLg(g) {
+      if(g>=60) {
+        return "P";
+      } else {
+        return "F";
+      }
+    }
+    console.log(getLg(40));
+
+    //arrow function  
+    let add = (a, b) => a+b;
+
+    //map(): will create another array
+    let arr = [38, 80, 70, 55, 90];
+    let arr2 = arr.map(getLg);
+
+    arr2 = arr.map((x) => x += 10);
+
+    console.log(arr2);
+
+
+  </script>
 
   <img src="static/head1.png" alt="" id="img1" style="height: 200px;">
   <img src="static/a.svg" alt="" id="img2" style="height: 200px;">
   <img src="static/b.svg" alt="" id="img2" style="height: 200px;">
-  <input type="text">
+  <input type="text" id="myInput">
+  <p class="text">Text</p>
   <button id="btn1" class="btn btn-primary">Click me</button>
   <script>
     "use strict"; 
+    let input = document.querySelector("#myInput");
     let btn = document.querySelector("#btn1");
+    let textP = document.querySelector(".text");
+ 
+    // function getInputText() {
+    //    text = input.value;
+    //   textP.innerText = text;
+    // }
+    // input.addEventListener("input", getInputText);
+
+
 
     function buttonClicked() {
-      alert("Button click!");
+      let text = input.value;
+      alert(text);
     }
-
     btn.addEventListener("click", buttonClicked);
   </script>
 </body>
