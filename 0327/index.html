@@ -58,7 +58,6 @@
 
 
   btn1.addEventListener('click', () =>{
-    alert('clicked')
     showTbl();
   })
     async function showTbl() {
@@ -68,7 +67,6 @@
       }
       let r = await fetch(url, opts);
       let rj = await r.json();
-      console.log('data loaded');
 
       let tbldiv = document.querySelector('#tbldiv');
 
@@ -78,11 +76,14 @@
       tbldiv.innerHTML = '';
       let tblOpts = {
         data: rj,
+        pagination: {limit: 5},
+        sort: true,
+        search: true,
       }
       let gridTbl = new gridjs.Grid(tblOpts);
       gridTbl.render(tbldiv);
 
-      
+
     }
 
   </script>
