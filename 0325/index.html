@@ -112,12 +112,13 @@
     //fetch
     b1.addEventListener('click', async () => {
       const dogOrCat = name === 'cat' ? url2 : url1;
+      const isCat = name === 'cat' ? true : false;
       const response = await fetch(dogOrCat, opts);
       let responseJson = await response.json(); //JS object
       T = responseJson;
       console.log(T);
       let d1 = document.getElementById('d1');
-      d1.innerHTML = dogOrCat ? `<h1>Fact is: </h1>
+      d1.innerHTML = isCat ? `<h1>Fact is: </h1>
       <br>
       <p>${T.fact}</p>
 
@@ -132,7 +133,7 @@
 
       <br>
       <h1>Length: </h1><br>
-      <p>  ${T.length}</p>
+      <p>  </p>
       
       ` 
       ;
