@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="site.css">
+  <script src="https://juxinglong.github.io/static/iframe-resizer/iframeResizer.contentWindow.min.js"></script>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
+  
+  <!-- charts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <!-- Data table -->
+  <link href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css" rel="stylesheet"/>
+  <script src="https://unpkg.com/gridjs/dist/gridjs.umd.js"></script>
+  
+  <!-- Animation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
+  
+  <!-- Map -->
+  <link href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet"/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  
+  <!-- sweetalert2 -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.10.7/sweetalert2.min.css" rel="stylesheet"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.10.7/sweetalert2.all.min.js"></script>
+  
+  <link href="https://juxinglong.github.io/static/MIS3033.css" rel="stylesheet"/>
+  <link href="site.css" rel="stylesheet"/>
+  <title>HW9</title>
+</head>
+<body>
+
+<a href="index.html" target="_self" class="btn btn-success">Page 1</a>
+<a href="chart.html" target="_self" class="btn btn-warning">Page 2</a>
+<br>
+<br>
+
+<button id="btn1" class="btn btn-primary">Get students</button>
+<button id="btn2" class="btn btn-primary">Get Courses</button>
+<button id="btn3" class="btn btn-primary">Get Enrollements</button>
+
+
+<div id="table">
+
+</div>
+  <script>
+
+    "use strict";
+      let name = 's';
+      var grid = null;
+    let btn1 = document.getElementById("btn1");
+    let btn2 = document.getElementById("btn2");
+    let btn3 = document.getElementById("btn3");
+
+   async function getData() {
+    if(grid!=null) {
+      grid.destroy();
+    }
+    let url = null;
+      if(name == 's') {
+        url = "https://juxinglong.github.io/static/HW/hw6/Students.json";
+      } else if(name == 'c') {
+        url = "https://juxinglong.github.io/static/HW/hw6/Courses.json"
+      } else if(name == 'e') {
+        url = "https://juxinglong.github.io/static/HW/hw6/Enrollments.json"
+      } else {
+        console.log("Error")
+        return;
+      }
+      let r = await fetch(url)
+      let rj = await r.json()
+
+      // console.log(rj)
+      let tableDiv = document.querySelector("#table");
+      tableDiv.innerHTML = "";
+      let params = {
+        data: rj,
+        pagination: {limit: 5},
+        search: true,
+        sort: true,
+        width: 1200
+      }
+
+      grid = new gridjs.Grid(params);
+      grid.render(tableDiv);
+   }
+
+    btn1.addEventListener("click", () => {
+      name = 's';
+      getData();
+      Swal.fire({
+        title: 'Success!',
+        icon: 'success',
+
+      })
+    });
+    btn2.addEventListener("click", () => {
+      name = 'c';
+      getData();
+      Swal.fire({
+        title: 'Success!',
+        icon: 'success',
+
+      })
+    });
+    btn3.addEventListener("click", () => {
+      name = 'e';
+      getData();
+      Swal.fire({
+        title: 'Success!',
+        icon: 'success',
+
+      })
+    });
+  </script>
+</body>
+</html>

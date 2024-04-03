@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="site.css">
+  <script src="https://juxinglong.github.io/static/iframe-resizer/iframeResizer.contentWindow.min.js"></script>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
+  
+  <!-- charts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <!-- Data table -->
+  <link href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css" rel="stylesheet"/>
+  <script src="https://unpkg.com/gridjs/dist/gridjs.umd.js"></script>
+  
+  <!-- Animation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
+  
+  <!-- Map -->
+  <link href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet"/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  
+  <!-- sweetalert2 -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.10.7/sweetalert2.min.css" rel="stylesheet"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.10.7/sweetalert2.all.min.js"></script>
+  
+  <link href="https://juxinglong.github.io/static/MIS3033.css" rel="stylesheet"/>
+  <link href="site.css" rel="stylesheet"/>
+  <title>HW9</title>
+</head>
+<body>
+
+<a href="index.html" target="_self" class="btn btn-success">Page 1</a>
+<a href="chart.html" target="_self" class="btn btn-warning">Page 2</a>
+<br>
+<br>
+
+<button id="btn1" class="btn btn-secondary">Get MIS3013</button>
+<button id="btn2" class="btn btn-info">Get MIS3033</button>
+<button id="btn3" class="btn btn-danger">Get MIS3353</button>
+
+
+<div id="table"></div>
+    <div style="display: flex; flex-direction: row;">
+      <div style="width: 400px">
+        <canvas id="c1"></canvas>
+      </div>
+      <div style="width: 400px">
+        <canvas id="c2"></canvas>
+      </div>
+      <div style="width: 400px">
+        <canvas id="c3"></canvas>
+      </div>
+    </div>
+
+  <script>
+
+    "use strict";
+      let name = 's';
+      var grid = null;
+      var chart1 = null;
+      var chart2 = null;
+      var chart3 = null;
+      var g;
+    let btn1 = document.getElementById("btn1");
+    let btn2 = document.getElementById("btn2");
+    let btn3 = document.getElementById("btn3");
+
+
+    async function getChart(name) {
+    if(chart1!=null) {
+      chart1.destroy();
+    }
+    if(chart2!=null) {
+      chart2.destroy();
+    }
+    if(chart3!=null) {
+      chart3.destroy();
+    }
+
+    let url = '';
+
+      if(name == '3013') {
+        url = "https://juxinglong.github.io/static/HW/hw6/MIS3013.json";
+      } else if(name == '3033') {
+        url = "https://juxinglong.github.io/static/HW/hw6/MIS3033.json"
+      } else if(name == '3353') {
+        url = "https://juxinglong.github.io/static/HW/hw6/MIS3353.json"
+      } else {
+        Swal.fire({
+          title: 'Error',
+          icon: 'error',
+          text: 'Invalid name'
+        })
+        return;
+      }
+      let r = await fetch(url)
+      let rj = await r.json()
+      console.log(rj)
+      g = rj;
+
+      let params = {
+        type: 'bar',
+        data: {
+          labels: rj.map(x=>x.lg),
+          datasets: [{
+            label: 'LABEL',
+            data: rj.map(x=>x.n),
+          }]
+        }
+      }
+      var c1 = document.querySelector("#c1");
+      chart1 = new Chart(c1, params);
+
+       params = {
+        type: 'line',
+        data: {
+          labels: rj.map(x=>x.lg),
+          datasets: [{
+            label: 'LABEL',
+            data: rj.map(x=>x.n),
+          }]
+        }
+      }
+      var c2 = document.querySelector("#c2");
+      chart2 = new Chart(c2, params);
+
+       params = {
+        type: 'pie',
+        data: {
+          labels: rj.map(x=>x.lg),
+          datasets: [{
+            label: 'LABEL',
+            data: rj.map(x=>x.n),
+          }]
+        }
+      }
+      var c3 = document.querySelector("#c3");
+      chart3 = new Chart(c3, params);
+
+   }
+
+   async function getTable() {
+    if(grid!=null) {
+      grid.destroy();
+    }
+
+    let url = null;
+      if(name == '3013') {
+        url = "https://juxinglong.github.io/static/HW/hw6/MIS3013.json";
+      } else if(name == '3033') {
+        url = "https://juxinglong.github.io/static/HW/hw6/MIS3033.json"
+      } else if(name == '3353') {
+        url = "https://juxinglong.github.io/static/HW/hw6/MIS3353.json"
+      } else {
+        Swal.fire({
+          title: 'Error',
+          icon: 'error',
+          text: 'Invalid name'
+        })
+        return;
+      }
+      let r = await fetch(url)
+      let rj = await r.json()
+
+      // console.log(rj)
+      let tableDiv = document.querySelector("#table");
+      tableDiv.innerHTML = "";
+      let params = {
+        columns: [{id: "lg", name: "Letter Grade"}, {id: "n", name: "Number of Students"}],
+        data: rj,
+        search: true,
+        sort: true,
+        width: 400
+      }
+
+      grid = new gridjs.Grid(params);
+      grid.render(tableDiv);
+   }
+
+    btn1.addEventListener("click", async () => {
+      name = '3013';
+      getTable();
+      getChart('3013');
+      Swal.fire({
+        title: 'Get 3013!',
+        icon: 'success',
+      })
+
+    });
+    btn2.addEventListener("click", async  () => {
+      name = '3033';
+      getTable();
+      getChart('3033');
+      Swal.fire({
+        title: 'Get 3033!',
+        icon: 'success',
+
+      })
+    });
+    btn3.addEventListener("click", async  () => {
+      name = '3353';
+      getTable();
+      getChart('3353');
+      Swal.fire({
+        title: 'Get 3353!',
+        icon: 'success',
+
+      })
+    });
+  </script>
+</body>
+</html>
