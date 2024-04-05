@@ -3,5 +3,63 @@
 
 }
 body {
-   margin: 10px
+   margin: 10px;
+}
+.topTitle {
+ 
+}
+.header {
+    width: 1000px;
+    font-size: 30pt;
+    color: dodgerblue;
+    text-transform: uppercase;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.imgTop {
+    height: 100px;
+}
+main {
+    width: 1000px;
+    display: flex;
+    justify-content: center;
+align-items: center;
+}
+.middleLeft {
+    color: dodgerblue;
+    font-size: 20pt;
+    border: 2px solid darkgrey;
+    border-radius: 10px;
+    text-align: center;
+    width: 480px;
+    padding: 4px;
+}
+.middleRight {
+    border: 2px solid darkgrey;
+    border-radius: 10px;
+    width: 480px;
+}
+.middleRightTitle {
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 5px;
+    margin: 2px;
+}
+.blue {
+    background-color: dodgerblue;
+}
+
+
+.footer {
+    display: flex;
+width: 1000px;
+height: 50px;
+background-color: aliceblue;
+
+justify-content: center;
+align-items: center;
+color: darkgray;
+border-radius: 5px;
 }
